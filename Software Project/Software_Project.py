@@ -2,21 +2,19 @@ import os
 import numpy as np
 import pygame
 
-# Path to the directory containing audio files
+# Adding audio files path
 audio_directory = "/home/mayank/music"
 
-# Initialize Pygame mixer
 pygame.mixer.init()
 
-# Main program loop
+# Main program infinite while loop
 while True:
-    # Get a list of all the audio files in the directory
+    # Making a list of all mp3 files
     audio_files = [os.path.join(audio_directory, f) for f in os.listdir(audio_directory) if f.endswith(".mp3")]
 
     # Shuffle the list of audio files using numpy
     np.random.shuffle(audio_files)
 
-    # Flag to control playback
     paused = False
 
     # Loop through the shuffled list of audio files and play them
@@ -30,10 +28,10 @@ while True:
         # Play the audio file
         pygame.mixer.music.play()
 
-        # Display the name of the currently playing song
+        # Displaying the name of the currently playing song
         print("Now playing:", song_name)
 
-        # Wait for the audio file to finish playing or handle commands
+        # Taking commands or wait for the audio file to finish.
         while pygame.mixer.music.get_busy() or paused:
             command = input("Enter command (p: pause, r: resume, n: next, q: quit): ")
 
